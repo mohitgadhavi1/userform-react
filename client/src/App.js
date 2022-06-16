@@ -14,27 +14,32 @@ function App() {
   const [skills, setSkills] = useLocalStorage("skills", "");
   const [color, setColor] = useLocalStorage("color", "");
 
-  const formStorage = async function (e) {
-    e.preventDefault();
-
-    const res = await fetch("/url", {
-      method: "post",
-      body: JSON.stringify({ data: "some Information" }),
-      headers: { "content-type": "application-json" },
-    });
-    const cl = await res.json();
-    console.log(cl);
+  const handleSubmit = (e) => {
+    e.preventDefaut();
+    const formData = {
+      name,
+      email,
+      num,
+      age,
+      birthdate,
+      file,
+      comment,
+      skills,
+      color,
+    };
+    console.log(formData);
   };
 
   return (
     <div className="App">
-      <form method="post">
+      <form onSubmit={handleSubmit}>
         <fieldset>
           <legend>UserForm</legend>
           <label htmlFor="name" type="text">
             Name:
             <input
               name="name"
+              required
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
@@ -42,13 +47,18 @@ function App() {
           <br />
           <label htmlFor="" type="email">
             Email:
-            <input value={email} onChange={(e) => setEmail(e.target.value)} />
+            <input
+              value={email}
+              required
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </label>
           <br />
           <label>
             phone number:
             <input
               type="tel"
+              required
               value={num}
               id="phone"
               name="phone"
@@ -72,6 +82,7 @@ function App() {
             Birthdate:
             <input
               type="date"
+              required
               value={birthdate}
               name="Birthdate"
               onChange={(e) => setBirthdate(e.target.value)}
@@ -141,7 +152,7 @@ function App() {
           </label>
           <br />
 
-          <input type="submit" onClick={formStorage} />
+          <input type="submit" />
         </fieldset>
       </form>
     </div>
