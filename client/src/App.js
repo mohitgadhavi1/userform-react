@@ -4,28 +4,25 @@ import Todo from "./Todo";
 import { useLocalStorage } from "./useLocalStorage";
 
 function App() {
-  const [name, setName] = useLocalStorage("name", "");
-  const [email, setEmail] = useLocalStorage("email", "");
-  const [num, setNum] = useLocalStorage("num", "");
-  const [age, setAge] = useLocalStorage("age", "");
-  const [birthdate, setBirthdate] = useLocalStorage("date", "");
-  const [file, setFile] = useLocalStorage("file", "");
-  const [comment, setComment] = useLocalStorage("comment", "");
-  const [skills, setSkills] = useLocalStorage("skills", "");
-  const [color, setColor] = useLocalStorage("color", "");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [num, setNum] = useState("");
+  const [age, setAge] = useState("");
+  const [birthdate, setBirthdate] = useState("");
+  // const [file, setFile] = useLocalStorage("file", "");
+  const [comment, setComment] = useState("");
+  // const [skills, setSkills] = useLocalStorage("skills", "");
+  // const [color, setColor] = useLocalStorage("color", "");
 
   const handleSubmit = (e) => {
-    e.preventDefaut();
+    e.preventDefault();
     const formData = {
       name,
       email,
       num,
       age,
       birthdate,
-      file,
       comment,
-      skills,
-      color,
     };
     console.log(formData);
   };
@@ -39,7 +36,6 @@ function App() {
             Name:
             <input
               name="name"
-              required
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
@@ -47,18 +43,13 @@ function App() {
           <br />
           <label htmlFor="" type="email">
             Email:
-            <input
-              value={email}
-              required
-              onChange={(e) => setEmail(e.target.value)}
-            />
+            <input value={email} onChange={(e) => setEmail(e.target.value)} />
           </label>
           <br />
           <label>
             phone number:
             <input
               type="tel"
-              required
               value={num}
               id="phone"
               name="phone"
@@ -76,23 +67,23 @@ function App() {
               max="125"
               onChange={(e) => setAge(e.target.value)}
             />
+            <p>{age}</p>
           </label>
           <br />
           <label>
             Birthdate:
             <input
               type="date"
-              required
               value={birthdate}
               name="Birthdate"
               onChange={(e) => setBirthdate(e.target.value)}
             />
           </label>
           <br />
-          <label>
+          {/* <label>
             Select a file:
             <input type="file" name="myfile" />
-          </label>
+          </label> */}
           <br />
           <label htmlFor="">
             Comment:
@@ -106,7 +97,7 @@ function App() {
 
           <br />
 
-          <label>
+          {/* <label>
             Skills:
             <label htmlFor="html">
               HTML{" "}
@@ -140,19 +131,18 @@ function App() {
                 onChange={(e) => setSkills(e.target.value)}
               />
             </label>
-          </label>
+          </label> */}
           <br />
-          <label>
+          {/* <label>
             favourite Color:
             <input
               type="color"
               value={color}
               onChange={(e) => setColor(e.target.value)}
             />
-          </label>
+          </label> */}
           <br />
-
-          <input type="submit" />
+          <button>Submit</button>
         </fieldset>
       </form>
     </div>
